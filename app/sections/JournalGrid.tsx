@@ -1,0 +1,105 @@
+"use client";
+
+import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
+
+const journalPosts = [
+  {
+    id: "seasonal-news",
+    category: "SEASONAL NEWS",
+    title: "côte&ciel × NinepointNine: Reach Beyond Limits",
+    image: "/seasonal-news/image-left.png",
+  },
+  {
+    id: "duality",
+    category: "SEASONAL NEWS",
+    title: "côte&ciel Presents: Duality. A Day in Shanghai",
+    image: "/seasonal-news/image-right.png",
+  },
+];
+
+const horizonPosts = [
+  {
+    id: "liang-dong",
+    category: "HORIZON SERIES",
+    title: "horizon series | Liang Dong",
+    image: "/horizon-series/image-left.png",
+  },
+  {
+    id: "jean-baptiste",
+    category: "HORIZON SERIES",
+    title: "horizon series | Jean-Baptiste Anotin",
+    image: "/horizon-series/image-left.png",
+  },
+];
+
+function PostCard({
+  category,
+  title,
+  image,
+}: {
+  category: string;
+  title: string;
+  image: string;
+}) {
+  return (
+    <a href="#" className="group block">
+      <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+        />
+      </div>
+      <div className="mt-4">
+        <p className="text-xs font-semibold tracking-[0.15em] text-neutral-500">
+          {category}
+        </p>
+        <h3 className="mt-2 text-lg font-medium leading-snug tracking-tight text-neutral-900 group-hover:opacity-70 transition-opacity">
+          {title}
+        </h3>
+      </div>
+    </a>
+  );
+}
+
+function PostGroup({
+  title,
+  posts,
+}: {
+  title: string;
+  posts: { id: string; category: string; title: string; image: string }[];
+}) {
+  const reduce = useReducedMotion();
+
+  return (
+    <motion.div
+      initial={reduce ? false : { opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <h2 className="mb-8 text-lg font-semibold tracking-tight text-neutral-900">
+        {title}
+      </h2>
+      <div className="grid gap-6 sm:grid-cols-2">
+        {posts.map((post) => (
+          <PostCard key={post.id} {...post} />
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
+export default function JournalGrid() {
+  return (
+    <section id="journal" className="bg-white py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 space-y-16 sm:space-y-24 sm:px-6 lg:px-8">
+        <PostGroup title="SEASONAL NEWS" posts={journalPosts} />
+        <PostGroup title="HORIZON SERIES" posts={horizonPosts} />
+      </div>
+    </section>
+  );
+}

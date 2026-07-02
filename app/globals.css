@@ -19,8 +19,45 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Swiper custom scrollbar */
+[class*="custom-scrollbar"] {
+  position: relative;
+  height: 2px;
+  background-color: #e5e5e5;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+[class*="custom-scrollbar"] .swiper-scrollbar-drag {
+  height: 100%;
+  background-color: #171717;
+  border-radius: 9999px;
+  cursor: grab;
+}
+
+[class*="custom-scrollbar"] .swiper-scrollbar-drag:active {
+  cursor: grabbing;
 }

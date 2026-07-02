@@ -1,65 +1,156 @@
-import Image from "next/image";
+import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
+import Hero from "./sections/Hero";
+import ProductCarousel from "./sections/ProductCarousel";
+import CollaborationBanner from "./sections/CollaborationBanner";
+import AboutManifesto from "./sections/AboutManifesto";
+import JournalGrid from "./sections/JournalGrid";
+import Newsletter from "./sections/Newsletter";
+
+const ss26Products = [
+  {
+    id: "drava",
+    name: "Drava Gathered Black",
+    price: "$385.00 USD",
+    image: "/new-product/product-1.png",
+    badge: "Seasonal item",
+    rating: 4.9,
+    reviews: 875,
+    colors: ["#111111", "#4a4a4a", "#7a7a7a", "#5a6b5a", "#8b6f4e", "#3e4a5e"],
+  },
+  {
+    id: "hyco",
+    name: "Hyco S Otra Gathered Black",
+    price: "$340.00 USD",
+    image: "/new-product/product-2.png",
+    badge: "Seasonal item",
+    rating: 4.7,
+    reviews: 330,
+    colors: ["#111111", "#3d3d3d", "#5c5c5c", "#8b7355", "#2f3e4e"],
+  },
+  {
+    id: "orne",
+    name: "Orne Otra Gathered Black",
+    price: "$310.00 USD",
+    image: "/new-product/product-3.png",
+    badge: "Seasonal item",
+    rating: 4.8,
+    reviews: 128,
+    colors: ["#111111", "#555555", "#9a9a9a", "#4a5a4a", "#7a5a3a"],
+  },
+  {
+    id: "saar",
+    name: "Saar Small Alias Leather",
+    price: "$420.00 USD",
+    image: "/new-product/product-4.png",
+    badge: "Seasonal item",
+    rating: 4.9,
+    reviews: 215,
+    colors: ["#111111", "#6b4f3a", "#8b6f4e", "#3a3a3a", "#2f4152"],
+  },
+  {
+    id: "nile",
+    name: "Nile EcoYarn Olive",
+    price: "$265.00 USD",
+    image: "/new-product/product-5.png",
+    badge: "Seasonal item",
+    rating: 4.5,
+    reviews: 72,
+    colors: ["#3a3f2d", "#111111", "#5a5a5a", "#8b7355", "#4a4a4a"],
+  },
+  {
+    id: "kaamos",
+    name: "Kaamos Sleek Nylon Grey",
+    price: "$290.00 USD",
+    image: "/new-product/product-6.png",
+    badge: "Seasonal item",
+    rating: 4.7,
+    reviews: 156,
+    colors: ["#3a3a3a", "#111111", "#7a7a7a", "#4a5a4a", "#8b6f4e"],
+  },
+];
+
+const iconicProducts = [
+  {
+    id: "sava",
+    name: "Sava M Sleek Nylon Black Backpack",
+    price: "$275.00 USD",
+    image: "/new-product/product-7.png",
+    rating: 4.8,
+    reviews: 412,
+    colors: ["#111111", "#2a2a2a", "#4a4a4a", "#5a6b5a", "#8b6f4e"],
+  },
+  {
+    id: "isar",
+    name: "Isar M Komatsu Onibegie Nylon Black",
+    price: "$470.00 USD",
+    image: "/new-product/product-8.png",
+    rating: 4.9,
+    reviews: 267,
+    colors: ["#111111", "#3a3a3a", "#7a7a7a", "#3e4a5e", "#6b4f3a"],
+  },
+  {
+    id: "yukon",
+    name: "Yukon Sleek Black",
+    price: "$300.00 USD",
+    image: "/new-product/product-9.png",
+    rating: 4.6,
+    reviews: 189,
+    colors: ["#111111", "#4a4a4a", "#6b6b6b", "#5a6b5a", "#8b7355"],
+  },
+  {
+    id: "oril",
+    name: "Oril Small Smooth Nylon",
+    price: "$245.00 USD",
+    image: "/new-product/product-10.png",
+    rating: 4.7,
+    reviews: 94,
+    colors: ["#111111", "#5a5a5a", "#9a9a9a", "#3a4a5e", "#8b6f4e"],
+  },
+  {
+    id: "ganges",
+    name: "Ganges Alias Leather Brown",
+    price: "$520.00 USD",
+    image: "/new-product/product-11.png",
+    rating: 4.8,
+    reviews: 521,
+    colors: ["#4a3b2a", "#111111", "#6b4f3a", "#8b6f4e", "#3a3a3a"],
+  },
+  {
+    id: "obsidian",
+    name: "Obsidian Backpack Medium",
+    price: "$380.00 USD",
+    image: "/new-product/product-12.png",
+    rating: 4.5,
+    reviews: 63,
+    colors: ["#111111", "#2a2a2a", "#4a4a4a", "#5a5a5a", "#7a7a7a"],
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <NavBar />
+      <main className="flex-1">
+        <Hero />
+        <div id="collection">
+          <ProductCarousel
+            title="SS26 COLLECTION"
+            subtitle="New arrivals for the season."
+            products={ss26Products}
+          />
+        </div>
+        <CollaborationBanner />
+        <ProductCarousel
+          title="THE ICONIC SILHOUETTES"
+          subtitle="Proven favorites, carried daily."
+          products={iconicProducts}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+        <AboutManifesto />
+        <JournalGrid />
+        <Newsletter />
       </main>
-    </div>
+      <Footer />
+    </>
   );
 }
