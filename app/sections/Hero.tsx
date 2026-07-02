@@ -7,7 +7,7 @@ export default function Hero() {
   const reduce = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-[100dvh] items-center justify-center overflow-hidden bg-neutral-950 text-white">
+    <section className="relative flex min-h-[100dvh] items-end justify-start overflow-hidden bg-neutral-950 text-white">
       <div className="absolute inset-0">
         <Image
           src="/hero/hero.png"
@@ -15,12 +15,12 @@ export default function Hero() {
           fill
           priority
           sizes="100vw"
-          className="object-cover opacity-60"
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950/40 via-neutral-950/20 to-neutral-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-950/60 via-neutral-950/30 to-transparent" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center px-4 text-center">
+      <div className="relative z-10 flex flex-col items-start px-6 pb-16 text-left sm:pb-20 sm:px-10 lg:pb-24 lg:px-16">
         <motion.p
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,7 +33,7 @@ export default function Hero() {
           initial={reduce ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl text-4xl font-semibold tracking-tight leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl"
+          className="max-w-2xl text-4xl font-semibold tracking-tight leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl"
         >
           Designed for movement.
         </motion.h1>
