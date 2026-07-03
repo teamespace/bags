@@ -8,10 +8,10 @@ export default function CollaborationBanner() {
 
   return (
     <motion.section
-      initial={reduce ? false : { opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      initial={reduce ? false : { opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       className="relative flex min-h-[70dvh] items-center justify-center overflow-hidden bg-neutral-100"
     >
       <div className="absolute inset-0">

@@ -36,14 +36,15 @@ export default function Footer() {
   const reduce = useReducedMotion();
 
   return (
-    <footer className="border-t border-neutral-200 bg-white">
+    <motion.footer
+      initial={reduce ? false : { opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      className="border-t border-neutral-200 bg-white"
+    >
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
         >
           <div>
             <Link
@@ -116,7 +117,7 @@ export default function Footer() {
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         <motion.div
           initial={reduce ? false : { opacity: 0 }}
@@ -129,6 +130,6 @@ export default function Footer() {
           <p>Powered by Shopify</p>
         </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

@@ -94,12 +94,21 @@ function PostGroup({
 }
 
 export default function JournalGrid() {
+  const reduce = useReducedMotion();
+
   return (
-    <section id="journal" className="bg-white py-16 sm:py-24">
+    <motion.section
+      id="journal"
+      initial={reduce ? false : { opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      className="bg-white py-16 sm:py-24"
+    >
       <div className="mx-auto max-w-7xl px-4 space-y-16 sm:space-y-24 sm:px-6 lg:px-8">
         <PostGroup title="SEASONAL NEWS" posts={journalPosts} />
         <PostGroup title="HORIZON SERIES" posts={horizonPosts} />
       </div>
-    </section>
+    </motion.section>
   );
 }

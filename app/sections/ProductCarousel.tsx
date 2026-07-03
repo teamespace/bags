@@ -41,10 +41,10 @@ export default function ProductCarousel({
 
   return (
     <motion.section
-      initial={reduce ? false : { opacity: 0, y: 40 }}
+      initial={reduce ? false : { opacity: 0, y: 80 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
       className="bg-white py-16 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
