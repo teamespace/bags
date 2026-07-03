@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 
 const journalPosts = [
   {
@@ -33,6 +33,15 @@ const horizonPosts = [
   },
 ];
 
+const parentVariants = {
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
+};
+
 function PostCard({
   category,
   title,
@@ -43,7 +52,7 @@ function PostCard({
   image: string;
 }) {
   return (
-    <a href="#" className="group block">
+    <motion.a variants={childVariants} href="#" className="group block">
       <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100">
         <Image
           src={image}
@@ -61,7 +70,7 @@ function PostCard({
           {title}
         </h3>
       </div>
-    </a>
+    </motion.a>
   );
 }
 
@@ -72,15 +81,8 @@ function PostGroup({
   title: string;
   posts: { id: string; category: string; title: string; image: string }[];
 }) {
-  const reduce = useReducedMotion();
-
   return (
-    <motion.div
-      initial={reduce ? false : { opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-    >
+    <motion.div variants={parentVariants}>
       <h2 className="mb-8 text-lg font-semibold tracking-tight text-neutral-900">
         {title}
       </h2>
@@ -94,20 +96,22 @@ function PostGroup({
 }
 
 export default function JournalGrid() {
-  const reduce = useReducedMotion();
-
   return (
     <motion.section
       id="journal"
-      initial={reduce ? false : { opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      variants={parentVariants}
       className="bg-white py-16 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 space-y-16 sm:space-y-24 sm:px-6 lg:px-8">
-        <PostGroup title="SEASONAL NEWS" posts={journalPosts} />
-        <PostGroup title="HORIZON SERIES" posts={horizonPosts} />
+        <motion.div variants={childVariants}>
+          <PostGroup title="SEASONAL NEWS" posts={journalPosts} />
+        </motion.div>
+        <motion.div variants={childVariants}>
+          <PostGroup title="HORIZON SERIES" posts={horizonPosts} />
+        </motion.div>
       </div>
     </motion.section>
   );

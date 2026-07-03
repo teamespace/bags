@@ -24,7 +24,7 @@ export default function Hero() {
         <motion.p
           initial={reduce ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
           className="mb-4 text-xs font-semibold tracking-[0.2em] text-white/80"
         >
           SUMMER SALE &apos;26
@@ -32,7 +32,7 @@ export default function Hero() {
         <motion.h1
           initial={reduce ? false : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] as const }}
           className="max-w-2xl text-4xl font-semibold tracking-tight leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl"
         >
           Designed for movement.
@@ -41,7 +41,7 @@ export default function Hero() {
           href="#collection"
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
           className="mt-8 inline-flex h-12 items-center justify-center border border-white px-8 text-sm font-medium tracking-wide text-white transition-colors hover:bg-white hover:text-neutral-950"
         >
           SHOP THE COLLECTION

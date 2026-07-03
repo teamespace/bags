@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import {
   FacebookLogo,
   InstagramLogo,
@@ -32,20 +32,26 @@ const socialLinks = [
   { label: "YouTube", icon: YoutubeLogo, href: "#" },
 ];
 
-export default function Footer() {
-  const reduce = useReducedMotion();
+const parentVariants = {
+  visible: { transition: { staggerChildren: 0.08 } },
+};
 
+const childVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
+};
+
+export default function Footer() {
   return (
     <motion.footer
-      initial={reduce ? false : { opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      variants={parentVariants}
       className="border-t border-neutral-200 bg-white"
     >
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4"
-        >
+        <motion.div variants={childVariants} className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link
               href="/"
@@ -117,13 +123,10 @@ export default function Footer() {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={reduce ? false : { opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          variants={childVariants}
           className="mt-14 flex flex-col items-center justify-between gap-3 border-t border-neutral-200 pt-6 text-xs text-neutral-500 sm:flex-row"
         >
           <p>© 2026, côte&ciel US</p>

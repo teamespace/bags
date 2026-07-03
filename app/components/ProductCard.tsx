@@ -42,7 +42,7 @@ export default function ProductCard({
           variants={{
             hover: { scale: 1.05 },
           }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="relative h-full w-full"
         >
           <Image

@@ -1,7 +1,7 @@
 "use client";
 
 import { useId } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Scrollbar } from "swiper/modules";
 import { CaretLeft, CaretRight } from "@phosphor-icons/react/dist/ssr";
@@ -28,12 +28,20 @@ interface ProductCarouselProps {
   products: Product[];
 }
 
+const parentVariants = {
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const } },
+};
+
 export default function ProductCarousel({
   title,
   subtitle,
   products,
 }: ProductCarouselProps) {
-  const reduce = useReducedMotion();
   const id = useId().replace(/:/g, "");
   const prevClass = `custom-prev-${id}`;
   const nextClass = `custom-next-${id}`;
@@ -41,23 +49,23 @@ export default function ProductCarousel({
 
   return (
     <motion.section
-      initial={reduce ? false : { opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial="hidden"
+      whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+      variants={parentVariants}
       className="bg-white py-16 sm:py-24"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">
+          <motion.h2 variants={childVariants} className="text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">
             {title}
-          </h2>
+          </motion.h2>
           {subtitle && (
-            <p className="mt-3 text-sm text-neutral-500">{subtitle}</p>
+            <motion.p variants={childVariants} className="mt-3 text-sm text-neutral-500">{subtitle}</motion.p>
           )}
         </div>
 
-        <div className="relative">
+        <motion.div variants={childVariants} className="relative">
           <Swiper
             modules={[Navigation, Scrollbar]}
             spaceBetween={16}
@@ -116,7 +124,7 @@ export default function ProductCarousel({
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );
