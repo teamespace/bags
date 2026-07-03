@@ -51,7 +51,7 @@ export default function NavBar() {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
         className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
           scrolled ? "bg-neutral-950/95 backdrop-blur-sm" : "bg-transparent"
         }`}

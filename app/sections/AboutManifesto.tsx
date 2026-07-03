@@ -6,12 +6,12 @@ export default function AboutManifesto() {
   const reduce = useReducedMotion();
 
   const parentVariants = {
-    visible: { transition: { staggerChildren: 0.08 } },
+    visible: { transition: { staggerChildren: 0.12 } },
   };
 
   const childVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6,     ease: [0.16, 1, 0.3, 1] as const } },
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const } },
   };
 
   return (
